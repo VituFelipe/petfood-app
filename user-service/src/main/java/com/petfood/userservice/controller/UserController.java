@@ -6,15 +6,14 @@ import com.petfood.userservice.dto.RegisterRequest;
 import com.petfood.userservice.model.User;
 import com.petfood.userservice.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-
     @Autowired
     private AuthService authService;
 

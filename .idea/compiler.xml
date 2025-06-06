@@ -9,12 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="catalog-service" />
         <module name="user-service" />
+        <module name="order-service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="petfood-platform" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="catalog-service" options="" />
+      <module name="order-service" options="-parameters" />
       <module name="user-service" options="" />
     </option>
   </component>
