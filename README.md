@@ -12,6 +12,7 @@ A microservices-based platform for selling pet food, built with Spring Boot and 
 - Java 21+
 - Maven 3.9.9+
 - MongoDB 6.0+
+- Docker Desktop (for containerized execution
 
 ## Setup
 1. Start MongoDB:
@@ -23,7 +24,19 @@ A microservices-based platform for selling pet food, built with Spring Boot and 
    cd petfood-app/<service>
    mvn clean install
    mvn spring-boot:run
-   ```
+   
+
+ ### Docker Execution
+1 - Ensure Docker Desktop is running.
+2  - Build and start all services:
+  ```bash
+  cd petfood-app
+  docker-compose up --build
+  ```
+3 - Stop services:
+  ```bash
+  docker-compose down
+  ```
 
 ## Databases
 - **catalog-service**: Uses `catalog_db` (created automatically upon inserting products).
@@ -55,14 +68,14 @@ A microservices-based platform for selling pet food, built with Spring Boot and 
 - **Debugging**: Add `logging.level.org.springframework=DEBUG` to `application.properties` for detailed logs.
 
 ## Evidence
-- Screenshots of MongoDB Compass and Swagger UI for `user-service` are stored in `docs/screenshots`.
+- Screenshots of MongoDB Compass and Swagger UI for `all project` are stored in `docs/screenshots`.
 
 ## Commit Log
 - **2025-06-05**: Initialized catalog-service with basic endpoints and Swagger.
 - **2025-06-05**: Added user-service with registration, login, and customer management.
 - **2025-06-05**: Added order-service with endpoints for order management.
+- **2025-06-06**: Added Docker configuration for catalog-service and user-service.
 
 ## Next Steps
-- Add `PUT` and `DELETE` endpoints to catalog-service.
-- Create a simulated Payment service.
-- Implement the front-end in React.
+Implement order-service with Docker support.
+Add payment-service (simulated).
