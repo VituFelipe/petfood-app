@@ -40,4 +40,9 @@ public class AuthService {
         response.setToken(user.getId()); // Retorna userId em vez de JWT
         return response;
     }
+
+    public User getUserById(String id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found: " + id));
+    }
 }

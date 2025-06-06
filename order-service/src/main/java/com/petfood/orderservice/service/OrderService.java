@@ -23,16 +23,19 @@ public class OrderService {
     private String userServiceUrl;
 
     public Order createOrder(String userId, List<OrderItem> items) {
-        // Validar usuário
-        restTemplate.getForObject(userServiceUrl + "/api/users/" + userId, Map.class);
+        // Verificar usuário que tava me travano aaaaaaaaa
+        Map<String, Object> user = restTemplate.getForObject(
+                userServiceUrl + "/api/users/" + userId, Map.class);
+        if (user == null) {
+            throw new RuntimeException("User not found: " + userId);
+        }
 
-        // Validar produtos e calcular preço
         double totalPrice = 0;
         for (OrderItem item : items) {
             Map<String, Object> product = restTemplate.getForObject(
                     catalogServiceUrl + "/api/products/" + item.getProductId(), Map.class);
             if (product == null) {
-                throw new RuntimeException("Num achemo nada: " + item.getProductId());
+                throw new RuntimeException("Product not found: " + item.getProductId());
             }
             double price = ((Number) product.get("price")).doubleValue();
             String name = (String) product.get("name");
@@ -40,14 +43,12 @@ public class OrderService {
             item.setProductName(name);
             totalPrice += price * item.getQuantity();
         }
-
         Order order = new Order();
         order.setUserId(userId);
         order.setItems(items);
         order.setTotalPrice(totalPrice);
         order.setStatus("PENDING");
         order.setCreatedAt(LocalDateTime.now());
-
         return orderRepository.save(order);
     }
 
@@ -57,6 +58,12 @@ public class OrderService {
 
     public Order getOrderById(String id) {
         return orderRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bro, you Order not found: " + id));
+                .orElseThrow(() -> new RuntimeException("Order not found: " + id));
+    }
+
+    public void updateStatus(String id, String status) {
+        Order order = getOrderById(id);
+        order.setStatus(status);
+        orderRepository.save(order);
     }
 }

@@ -5,25 +5,29 @@ import com.petfood.userservice.dto.LoginResponse;
 import com.petfood.userservice.dto.RegisterRequest;
 import com.petfood.userservice.model.User;
 import com.petfood.userservice.service.AuthService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/users")
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
+    @ResponseStatus(HttpStatus.CREATED)
+    public User register(@RequestBody RegisterRequest request) {
+        return authService.register(request);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-        return ResponseEntity.ok(authService.login(request));
+    public LoginResponse login(@RequestBody LoginRequest request) {
+        return authService.login(request);
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable String id) {
+        return authService.getUserById(id);
     }
 }
