@@ -49,6 +49,7 @@
     <module>catalog-service</module>
     <module>user-service</module>
     <module>order-service</module>
+    <module>payment-service</module>
   </modules>
   <dependencyManagement>
     <dependencies>
