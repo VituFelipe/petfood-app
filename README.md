@@ -7,6 +7,8 @@ A microservices-based platform for selling pet food, built with Spring Boot and 
 - **catalog-service**: Manages pet food products (name, type, description, weight, price, availability).
 - **user-service**: Handles customer registration, login, and management with JWT authentication.
 - **order-service**: Manages orders (create, list, retrieve).
+- **payment-service**:
+- **frontend**:
 
 ## Prerequisites
 - Java 21+

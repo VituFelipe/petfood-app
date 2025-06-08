@@ -21,7 +21,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="catalog-service" options="" />
       <module name="order-service" options="-parameters" />
-      <module name="payment-service" options="-parameters" />
+      <module name="payment-service" options="" />
       <module name="user-service" options="" />
     </option>
   </component>
