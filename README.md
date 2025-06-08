@@ -96,3 +96,4 @@ A microservices-based platform for selling pet food, built with Spring Boot and 
 - **2025-06-08**: Added frontend with React, including login, product listing, order creation, and payment forms.
 - **2025-06-08**: Updated frontend with navigation, product dropdown, and user welcome message.
 
+ Vitu 🐶
